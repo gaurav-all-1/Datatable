@@ -1,0 +1,68 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="btn saved_list mr-4"><i class="fa-solid fa-grip-lines"></i>Saved Lists</button>
+    <button class="btn saved_filter mr-4"><i class="fa-solid fa-filter"></i>Saved Filter</button>
+    <button class="btn saved_filter"><i class="fa-solid fa-clock-rotate-left"></i>Saved History</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+              <input type="search" class="form-control mr-sm-2" name="search" [(ngModel)]="searchText" placeholder="Search By Name">
+        
+    </form>
+    </div>
+  </nav>
+
+
+
+<div class="container-fluid p-0">
+    
+    <div class="row m-0">
+        <div class="col-9 p-0">
+            <div class="datatable">
+                <table style="width: 100%;">
+                    <thead class="thead-heading">
+                      <tr>
+                        <th class="text-center">Date</th>
+                        <th >List Name</th>
+                        <th>No. of Entities</th>
+                        <th>Actions</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="datarow" *ngFor="let data of allList | searchList:searchText;let index=index">
+                        
+                        <td class="text-center">{{data.date}}</td>
+
+                         <td class="list_name">{{data.name}}</td>
+
+                         <td>{{data.detail.length}}</td>
+                        
+                         <td class="icons">
+                            <div class="icon_font" *ngFor="let data1 of data['icon']">
+                                <i class="{{data1.name}}"></i>
+                            </div>
+                           
+                         </td>
+                         <td><button type="btn" class="detail-btn" (click)="ondeatil(index)">Details</button></td>
+                       </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    
+        <div class="col-3">
+            <app-description [item]='Detail'></app-description>
+        </div>
+    </div>
+</div>
+
+
+
